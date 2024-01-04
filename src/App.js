@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from "./logo.svg";
+import AddNote from "./components/AddNote";
+import classes from "./style.module.css";
+import { useState } from "react";
+import NoteList from "./components/NoteList";
 
 function App() {
+  const [currentNote, setCurrentNote] = useState("");
+  const [notesList, setNotesList] = useState([]);
+  const [currentEditedNote, setCurrentEditedNote] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={classes.App}>
+      <AddNote
+        currentNote={currentNote}
+        setCurrentNote={setCurrentNote}
+        notesList={notesList}
+        setNotesList={setNotesList}
+        currentEditedNote={currentEditedNote}
+        setCurrentEditedNote={setCurrentEditedNote}
+      ></AddNote>
+      <NoteList
+        notesList={notesList}
+        setCurrentEditedNote={setCurrentEditedNote}
+        setCurrentNote={setCurrentNote}
+        setNotesList={setNotesList}
+      ></NoteList>
     </div>
   );
 }
